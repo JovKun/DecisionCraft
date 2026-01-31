@@ -1,0 +1,10 @@
+/* style.css */
+html {
+    background: linear-gradient(to right, rgb(101, 45, 255), rgb(255, 17, 215));
+    filter: brightness(0.7);
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Create a rounded box with shadow that is centered on the page and center*/
