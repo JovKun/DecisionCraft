@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Result</title>
+  <link rel="stylesheet" href="result.css" />
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="header">
+      <h1 class="title">Result:</h1>
+
+      <div class="header-actions">
+        <a class="back-link" href="timeline.html" aria-label="Back to timeline">← Back</a>
+      </div>
+    </header>
+
+    <section class="card">
+
+      <!-- ✅ OUTCOME FIRST -->
+      <section class="block outcome">
+        <h2 class="block-title">Outcome</h2>
+        <p class="block-text" id="result-description">
+          Your choice triggered a timeline shift. (Later you will fill this dynamically from DB/JSON.)
+        </p>
+
+        <div class="cta-row">
+          <a class="next-btn" href="timeline_now.html">Next →</a>
+        </div>
+      </section>
+
+      <!-- ✅ VISUALS AFTER -->
+      <section class="block media">
+        <h2 class="block-title">Results visual media</h2>
+
+        <div class="media-box">
+          <div class="media-label">Visual</div>
+          <img
+            id="result-visual"
+            class="media-visual"
+            src="https://via.placeholder.com/1400x700.png?text=Result+Visual+(Map+Animation+or+Scene)"
+            alt="Result visual placeholder"
+          />
+        </div>
+      </section>
+
+      <!-- ✅ BACKGROUND AUDIO (hidden player, plays after user interaction if needed) -->
+      <!-- Put your audio file path in src, for example: assets/audio/hannibal_result.mp3 -->
+      <audio id="bg-audio" autoplay loop>
+        <source src="" type="audio/mpeg" />
+      </audio>
+
+      <p class="hint">
+        If you don’t hear audio: click anywhere once (browsers often block autoplay).
+      </p>
+
+    </section>
+
+  </main>
+
+  <script>
+    // Autoplay fallback: if browser blocks autoplay, play after first click.
+    const bg = document.getElementById("bg-audio");
+    if (bg) {
+      bg.volume = 0.6; // adjust background loudness
+      const tryPlay = () => {
+        bg.play().catch(() => {});
+        window.removeEventListener("click", tryPlay);
+        window.removeEventListener("keydown", tryPlay);
+      };
+      window.addEventListener("click", tryPlay);
+      window.addEventListener("keydown", tryPlay);
+    }
+  </script>
+</body>
+</html>
