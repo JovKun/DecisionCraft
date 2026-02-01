@@ -1,4 +1,4 @@
-import { fetchRoot, fetchNext } from "./api.js";
+import { fetchRoot, fetchNext, resetGame } from "./api.js";
 import { getState, applyEffects, resetState, snapshotState } from "./state.js";
 
 const el = (id) => document.getElementById(id);
@@ -12,6 +12,7 @@ const ui = {
     reset: el("node-reset"),
     leader: el("node-leader"),
     year: el("node-year"),
+    image: el("node-image"),
     loadingOverlay: el("loading-overlay"),
 };
 
@@ -29,6 +30,7 @@ let year = -213;
 let history = [];
 let leader = { name: "Leader" };
 let context = "";
+let imageUrl = "";
 
 const WORLD_STATE_LABELS = {
     centralized_power: "Centralized Power",
@@ -71,6 +73,7 @@ function renderNode(payload) {
     context = payload.node.context;
     level = leader.id;
 
+    ui.image.src = "/website/asset/" + leader.id + ".png"; //1.png aka leader.id + ".png";
     ui.leader.textContent = leader.name;
     ui.year.textContent = year;
     ui.prompt.textContent = payload.node.prompt;
@@ -177,13 +180,17 @@ async function onChoose(choice) {
   }
 }
 
+export async function handleReset() {
+    localStorage.clear();
+    await resetGame();
+}
 
 async function startNewRun() {
     showLoading();
     resetState();
     history = [];
 
-    const rootPayload = await fetchRoot();
+    const rootPayload = await fetchNext();
     renderNode(rootPayload);
     console.log("Starting new run...");
     hideLoading();

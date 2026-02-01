@@ -51,16 +51,16 @@ previous_results = []
 
 # Generates a node based on the character ID
 async def generate_node(character_id, run_id):
-    
 
     # Prepare prompts
     prompt_prompt = f"Ask the user what they would do if they were the historical figure {CHARACTER_DATA[character_id]['figure']} in {CHARACTER_DATA[character_id]['year']} based on the previous choices: {previous_results} in exactly one sentence. If there are previous results, also add a brief description of how those results have affected the current situation."
     context_prompt = f"Generate a sentence-long context providing background information relevant to the prompt about {CHARACTER_DATA[character_id]['figure']} in {CHARACTER_DATA[character_id]['year']}. Consider all previous results: {previous_results}."
     choices_prompt = f"Generate 3 distinct options, each a sentence long, for the following prompt: {prompt_prompt} Consider all previous results: {previous_results}. All options should be viable choices."
+    outcomes_prompt = f"Based on the prompt: {prompt_prompt}, context: {context_prompt}, and choices: {choices_prompt}, predict a possible outcome for each choice, one sentence each."
 
     # Generate prompt
     payload = {
-        "model": "openai/gpt-4.1-mini",
+        "model": "openai/gpt-4.1-nano",
         "messages": [
             {
                 "role": "system",
@@ -95,6 +95,16 @@ async def generate_node(character_id, run_id):
     # Skip choices that don't start with a number since ChatGPT often outputs lines that are not choices and limit to 3 choices
     choices = "\n".join([choice for choice in choices.split('\n') if choice.strip() and choice.strip()[0].isdigit()][:3])
 
+    # Test query to return potential "outcomes"
+    payload["messages"][1]["content"] = outcomes_prompt
+    outcome_response = requests.post(API_URL, headers=headers, json=payload)
+    outcome_response.raise_for_status()
+    outcome_data = outcome_response.json()
+    outcomes = outcome_data.get("choices")[0].get("message").get("content")
+    
+    # Skip outcomes that don't start with a number since ChatGPT often outputs lines that are not outcomes and limit to 3 outcomes
+    outcomes = "\n".join([outcome for outcome in outcomes.split('\n') if outcome.strip() and outcome.strip()[0].isdigit()][:3])
+
     last_errors = []
 
     for _ in range(MAX_ATTEMPTS):
@@ -112,7 +122,7 @@ async def generate_node(character_id, run_id):
                 "prompt": prompt,
                 "context": context,
                 "choices": [
-                    {"id": f"choice_{i+1}", "text": choice.strip()}
+                    {"id": f"choice_{i+1}", "text": choice.strip(), "outcome": outcomes.split('\n')[i].strip() if i < len(outcomes.split('\n')) else "No outcome available."}
                     for i, choice in enumerate(choices.split('\n') if choices else [])
                 ]
             }

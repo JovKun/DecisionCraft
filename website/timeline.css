@@ -518,6 +518,7 @@ body::before{
   padding-top: 8px;
 }
 
+
 /* =========================
    CHOICES (kept style)
 ========================= */
@@ -686,7 +687,7 @@ body::before{
 
 /* make the portrait window a bit larger (more visible image) */
 .frame-shell .frame-inner{
-  inset: 13%;
+  inset: 6%;
 }
 
 /* portrait: do NOT crop */
@@ -698,4 +699,59 @@ body::before{
 /* optional: soften corners so it blends better with the frame */
 .frame-shell .media-img{
   border-radius: 12px;
+}
+
+.timeline-btn {
+  background: none;
+  border: none;
+  color: #cdefff;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+.timeline-btn:hover {
+  text-decoration: underline;
+}
+.frame-shell{
+  aspect-ratio: 4 / 3;   /* was 16 / 10 */
+}
+/* =========================
+   EXPAND CONTEXT LETTER AREA
+   (paste at the VERY bottom)
+========================= */
+
+/* make the two top cards stretch evenly */
+.layout{
+  align-items: stretch;
+}
+
+/* turn the context card into a vertical flex layout */
+.context-card{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* keep the heading compact */
+.context-card .context-head{
+  flex: 0 0 auto;
+}
+
+/* make the letter take the remaining height */
+.context-card .letter{
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 420px; /* adjust if you want it taller */
+}
+
+/* let the body expand, footer stays at bottom */
+.context-card .letter-body{
+  flex: 1 1 auto;
+}
+
+/* keep footer pinned nicely */
+.context-card .letter-footer{
+  margin-top: auto;
 }

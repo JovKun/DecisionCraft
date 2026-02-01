@@ -35,7 +35,7 @@
     <div id="choices"></div>
 
     <pre id="world-state"></pre>
-    <button onclick="localStorage.clear()" id="reset">Reset</button>
+    <button id="reset">Reset</button>
 
     <!-- CTA -->
     <div id="button">
@@ -82,7 +82,14 @@
     </section>
 
   </div>
+  <script type="module" src="app.js"></script>
+  <script type="module">
+    import { handleReset } from "./app.js";
 
-  <script type="module" src="./app.js"></script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const resetButton = document.getElementById("reset");
+      resetButton.addEventListener("click", async (event) => await handleReset(event));
+    });
+  </script>
 </body>
 </html>

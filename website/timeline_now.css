@@ -569,3 +569,72 @@ body::before{
   background: rgba(0,212,255,0.55);
   border-color: rgba(0,212,255,1);
 }
+.node.end::after {
+  content: "Present";
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: rgba(245,236,220,0.75);
+  white-space: nowrap;
+}
+
+.next-btn{
+  position: relative;
+  padding: 12px 22px;
+  border-radius: 18px;
+  border: 1px solid rgba(127,231,255,0.45);
+
+  background:
+    radial-gradient(140px 80px at 25% 25%, rgba(255,255,255,0.25), transparent 60%),
+    linear-gradient(180deg, rgba(127,231,255,0.95), rgba(50,120,140,0.85));
+
+  color: rgba(10,18,28,0.95);
+  font-weight: 950;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  box-shadow:
+    0 14px 34px rgba(0,0,0,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.15);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    filter 0.18s ease;
+}
+
+/* glow accent */
+.next-btn::after{
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(127,231,255,0.45),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+
+.next-btn:hover{
+  transform: translateY(-3px);
+  filter: brightness(1.05);
+  box-shadow:
+    0 20px 50px rgba(0,0,0,0.55),
+    0 0 26px rgba(127,231,255,0.35);
+}
+
+.next-btn:hover::after{
+  opacity: 1;
+}

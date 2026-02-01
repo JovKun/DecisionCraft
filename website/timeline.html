@@ -28,18 +28,24 @@
         <div class="timeline-end">end</div>
       </div>
     </div>
+  <div class="hud-right">
+    <button class="timeline-btn" type="button"
+            aria-label="View timeline"
+            onclick="window.location.href='timeline_now.html'">
+      Timeline →
+    </button>
 
     <div class="meta-pill">
       <div class="meta-row"><span class="meta-label">Level:</span> <span class="meta-value" id="node-level">1</span></div>
       <div class="meta-row"><span class="meta-label">Year:</span> <span class="meta-value" id="node-year">218 BC</span></div>
-    </div>
+  </div>
   </header>
 
   <!-- HERO TITLE -->
   <section class="hero-title">
     <div class="hero-ornament" aria-hidden="true"></div>
     <h1 class="hero-name" id="node-leader">Hannibal Barca</h1>
-    <p class="hero-sub" id="node-subtitle">Carthage • Second Punic War</p>
+    <p class="hero-sub" id="node-subtitle">Current Figure</p>
   </section>
 
   <!-- MAIN LAYOUT -->
@@ -49,7 +55,7 @@
     <section class="card media-card ancient">
       <div class="media-head">
         <h2 class="section-heading gold section-title">Media</h2>
-        <p class="muted">Portrait + campaign map.</p>
+        <p class="muted"></p>
       </div>
 
       <!-- Portrait (framed) -->
@@ -58,21 +64,8 @@
 
         <div class="frame-shell">
           <div class="frame-inner">
-            <img src="asset/Hannibal.jpg" alt="Hannibal portrait" class="media-img" />
+            <img src="/website/asset/1.png" alt="Hannibal portrait" class="media-img" id="node-image" />
           </div>
-        </div>
-      </div>
-
-      <!-- Map (NO FRAME) -->
-      <div class="media-block">
-        <h3 class="section-heading small gold">World Map</h3>
-
-        <div class="map-plain">
-          <img
-            src="asset/chartage.png"
-            alt="Map of Rome and Carthage in 218 BC"
-            class="map-img-plain"
-          />
         </div>
       </div>
     </section>
@@ -90,17 +83,13 @@
       <article class="letter">
         <div class="letter-top">
           <div class="wax-seal" aria-hidden="true"></div>
-          <div class="letter-title">Dispatch from Carthage</div>
-          <div class="letter-sub">To the commander on campaign…</div>
+          <div class="letter-title">Context</div>
         </div>
 
         <div class="letter-body">
           <p id="node-context">Context</p>
 
           <hr class="letter-rule" />
-
-          <h3 class="letter-h3">World State</h3>
-          <p id="world-state">Desc</p>
         </div>
 
         <div class="letter-footer">

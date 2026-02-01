@@ -8,7 +8,7 @@ app = Flask(__name__, static_folder="/website", static_url_path="")
 CORS(app)
 
 current_leader = {
-    "id": 1,
+    "id": 0,
     "name" : "Hannibal Barca",
     "run_id": 1
 }
@@ -22,14 +22,21 @@ async def api_root():
     current_leader["run_id"] = run_id
     return jsonify(cur_node)
 
-@app.post("/api/next")
+@app.get("/api/next")
 async def api_next():
-    leader_id = int(current_leader["id"]) + 1;
+    leader_id = int(current_leader["id"]) + 1
 
     out = await generate_node(leader_id, current_leader["run_id"])
     current_leader["id"] = leader_id
     current_leader["name"] = out["leader"]["name"]
     return jsonify(out)
+
+@app.post("/api/reset")
+async def api_reset():
+    current_leader["id"] = 0
+    current_leader["name"] = "Hannibal Barca"
+    current_leader["run_id"] = 1
+    return jsonify({"status": "reset"})
 
 @app.get("/")
 def index():
