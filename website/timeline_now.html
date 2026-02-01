@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timeline Now</title>
+  <link rel="stylesheet" href="timeline_now.css" />
+</head>
+
+<body>
+  <main class="wrap">
+    <header class="top">
+      <a class="back" href="result.html">← Back</a>
+      <h1 class="top-title">Timeline (As of Right Now)</h1>
+    </header>
+
+    <section class="grid">
+      <!-- Highlight box (top-left in your sketch) -->
+      <aside class="highlight">
+        <h2 class="h-title">Highlights</h2>
+        <p class="h-sub">
+          Click a past event node to see what changed and which figure you played.
+        </p>
+
+        <div class="h-card">
+          <div class="h-row">
+            <span class="h-label">Figure:</span>
+            <span id="h-figure" class="h-value">Hannibal Barca</span>
+          </div>
+          <div class="h-row">
+            <span class="h-label">Choice:</span>
+            <span id="h-choice" class="h-value">Cross the Alps immediately</span>
+          </div>
+          <div class="h-row">
+            <span class="h-label">Effect:</span>
+            <span id="h-effect" class="h-value">Rome is caught off guard.</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Timeline line with nodes -->
+      <section class="timeline-area">
+        <div class="timeline-line" role="list" aria-label="Timeline nodes">
+          <button class="node active" data-choice="Cross the Alps immediately" data-effect="Rome is caught off guard." aria-label="Node 1"></button>
+          <button class="node" data-choice="Wait for reinforcements" data-effect="Supplies improve, but Rome prepares defenses." aria-label="Node 2"></button>
+          <button class="node" data-choice="Take a safer route" data-effect="You arrive with more troops, but lose surprise." aria-label="Node 3"></button>
+          <button class="node" data-choice="Retreat and regroup" data-effect="Carthage regains stability, war shifts slower." aria-label="Node 4"></button>
+          <button class="node end" data-choice="Current Timeline" data-effect="This is the timeline state after your decisions." aria-label="Current timeline"></button>
+        </div>
+
+        <div class="big-text">TIMELINE AS IN<br/>RIGHT NOW</div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    const nodes = document.querySelectorAll(".node");
+    const figureEl = document.getElementById("h-figure");
+    const choiceEl = document.getElementById("h-choice");
+    const effectEl = document.getElementById("h-effect");
+
+    nodes.forEach((n) => {
+      n.addEventListener("click", () => {
+        nodes.forEach(x => x.classList.remove("active"));
+        n.classList.add("active");
+
+        // For now hardcoded (later load from DB/JSON)
+        figureEl.textContent = "Hannibal Barca";
+        choiceEl.textContent = n.dataset.choice || "Unknown choice";
+        effectEl.textContent = n.dataset.effect || "Unknown effect";
+      });
+    });
+  </script>
+</body>
+</html>
