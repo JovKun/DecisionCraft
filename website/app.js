@@ -77,6 +77,7 @@ async function onChoose(choice) {
             year: year,
             leader_id: leader.id,
             history: history,
+            choice_id: choice.id,
             state: snapshotState(),
         });
 
