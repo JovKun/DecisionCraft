@@ -5,13 +5,12 @@ const el = (id) => document.getElementById(id);
 
 const ui = {
     prompt: el("node-prompt"),
-    choices: el("node-choices"),
-    context: el("node-context"),
-    meta: el("node-meta"),
-    worldstate: el("node-world-state"),
+    choices: el("choices"),
+    context: el("context-title"),
+    worldstate: el("world-state"),
     reset: el("node-reset"),
-    title: el("node-title"),
-    subtitle: el("node-subtitle"),
+    leader: el("figure-name"),
+    year: el("node-subtitle"),
     loadingOverlay: el("loading-overlay"),
 };
 
@@ -23,9 +22,11 @@ function hideLoading() {
     ui.loadingOverlay?.classList.add("hidden");
 }
 
-let year = -216 
-let currentNodeId = "Hannibal Barca";
+let runId = 1;
+let year = -213; 
 let history = [];
+let leader = { name: "Leader" };
+let context = "";
 
 function renderState() {
     ui.worldstate.textContent = JSON.stringify(getState(), null, 2);
@@ -35,80 +36,56 @@ function renderNode(payload) {
     runId = payload.run_id;
     year = payload.year;
     leader = payload.leader;
+    context = payload.node.context;
 
-    ui.title.textContent = leader?.name ?? "Unknown Leader";
-    ui.subtitle.textContent = `Year: ${year}`;
-    ui.prompt.textContent = payload.node?.prompt ?? "No prompt available.";
-
-    //Context Bullets
-    ui.context.innerHTML = "";
-    (payload.node?.context ?? []).foreach ((line) => {
-        const li = document.createElement("li");
-        li.textContent = li;
-        ui.context.appendChild(li);
-    });
+    ui.leader.textContent = leader.name;
+    ui.year.textContent = `Year: ${year}`;
+    ui.prompt.textContent = payload.node.prompt;
+    ui.context.textContent = context;
 
     //Choice Buttons
     ui.choices.innerHTML = "";
-    (payload.node?.choices ?? []).forEach((choice) => {
+    for (const choice of payload.node.choices || []) {
         const btn = document.createElement("button");
-        btn.className = "choice-button";
-        btn.textContent = choice.label ?? choice.id;
-        
-        btn.addEventListener("click",  () =>  onChoose(choice));
+        btn.textContent = choice.text;
+        btn.onclick = () => onChoose(choice);
         ui.choices.appendChild(btn);
-    });
+    }
 
     renderState();
-    ui.meta.textContent = `Run: ${runId} ${leader?.id ?? ""}`;
 }
 
 async function onChoose(choice) {
-    try {
-        applyEffects(choice.effects);
-        history.push(choice.id);
-        renderState();
+    applyEffects(choice.effects);
+    history.push(choice.id);
+    renderState();
+    showLoading();
 
-        showLoading();
-        ui.meta.textContent = `Generating next decision...`;
+    const nextPayload = await fetchNext({
+        run_id: runId,
+        year: year,
+        leader: leader,
+        history: history,
+        choice_id: choice.id,
+        state: snapshotState(),
+        history: history,
+    });
 
-        const nextPayload = await fetchNext({
-            run_id: runId,
-            year: year,
-            leader_id: leader.id,
-            history: history,
-            choice_id: choice.id,
-            state: snapshotState(),
-        });
-
-        renderNode(nextPayload);
-    } catch (err) {
-        console.error("Error fetching next node:", err);
-        ui.meta.textContent = `Error fetching next node: ${err.message}`;
-    } finally {
-        hideLoading();
-    }
+    renderNode(nextPayload);
+    hideLoading();
 }
 
 async function startNewRun() {
-    try{
-        showLoading();
-        ui.meta.textContent = `Starting new run...`;
-        resetState();
-        history = [];
+    showLoading();
+    resetState();
+    history = [];
 
-        const rootPayload = await fetchRoot();
-        renderNode(rootPayload);
-    } catch (err) {
-        console.error("Error starting new run:", err);
-        ui.meta.textContent = `Error starting new run: ${err.message}`;
-    } finally {
-        hideLoading();
-    }
+    const rootPayload = await fetchRoot();
+    renderNode(rootPayload);
+    hideLoading();
 }
 
-
-ui.reset.addEventListener("click", startNewRun);
-
-// Initialize the app
-startNewRun();
+// Don't initialize app until redirected to timeline.html
+if (window.location.pathname.endsWith("timeline.html")) {
+    startNewRun();
+}

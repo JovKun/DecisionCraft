@@ -1,22 +1,17 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
+from flask_cors import CORS
 import secrets
 
 from website.generate import generate_node
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="/website", static_url_path="")
+CORS(app)
 
-DEFAULT_STATE = {
-    "centralized_power" : 0,
-    "military_professionalism" : 0,
-    "ideological_unity" : 0,
-    "information_control" : 0,
-    "economic_scale" : 0,
-    "technological_innovation" : 0
-}
-
-START = {
-    "year" : -216,
-    "leader" : {"id": "1", "name" : "Hannibal Barca"}
+current_leader = {
+    "id": 1,
+    "name" : "Hannibal Barca",
+    "run_id": 1
+    
 }
 
 @app.get("/api/root")
@@ -27,16 +22,16 @@ async def api_root():
 
 @app.post("/api/next")
 async def api_next():
-    payload = request.get_json(silent=True) or {}
+    leader_id = int(current_leader["id"]) + 1;
 
-    run_id = payload.get("run_id")
-    if not run_id:
-        return jsonify({"error": "Missing run_id"}), 400
-
-    leader_id = int(payload.get("leader_id", START["leader"]["id"]))
-
-    out = await generate_node(leader_id, run_id)
+    out = await generate_node(leader_id, current_leader["run_id"])
+    current_leader["id"] = leader_id
+    current_leader["name"] = out["leader"]["name"]
     return jsonify(out)
+
+@app.get("/")
+def index():
+    return send_from_directory(app.static_folder, "index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

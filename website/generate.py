@@ -1,12 +1,12 @@
 # Define the ruleset for content generation
 ruleset = ""
 
-with open("./website/ruleset.txt", "r") as f:
+with open("./data/ruleset.txt", "r") as f:
     ruleset = f.read()
 
 # Import necessary libraries
 import asyncio
-from flask import json, jsonify
+from flask import json
 from dotenv import load_dotenv
 
 import requests
@@ -94,7 +94,7 @@ async def generate_node(character_id, run_id):
 
     last_errors = []
 
-    for attempt in range(MAX_ATTEMPTS):
+    for _ in range(MAX_ATTEMPTS):
 
         # Define the return payload and return it
         return_payload = {

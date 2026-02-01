@@ -8,6 +8,14 @@
 </head>
 
 <body>
+  <!-- Loading Screen Overlay -->
+  <div id="loading-overlay" class="loading-overlay hidden">
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <p class="loading-text">Generating alternate timeline...</p>
+    </div>
+  </div>
+
   <main class="page">
 
     <!-- TOP BAR -->
@@ -57,7 +65,7 @@
       <section class="panel media" aria-label="Media panel">
         <div class="panel-head">
           <h2 class="panel-title" id="figure-name">Hannibal Barca</h2>
-          <div class="panel-subtitle" id="figure-subtitle">Carthage • Second Punic War</div>
+          <p id="node-subtitle">1313</p>
         </div>
 
         <div class="media-wrap">
@@ -90,12 +98,12 @@
           <div class="panel-subtitle">Background you should know before choosing.</div>
         </div>
 
-        <ul class="context-list" id="node-context">
-          <li>Hannibal leads a Carthaginian army toward Rome during the Second Punic War.</li>
-          <li>Crossing the Alps is high-risk: weather, terrain, and supply shortages can destroy morale.</li>
-          <li>A surprise arrival in Italy could shock Rome and shift the war’s momentum.</li>
-          <li>Your decision shapes alliances, resources, and the future balance of power.</li>
-        </ul>
+        <p class="context-list" id="context-title">
+          Hannibal leads a Carthaginian army toward Rome during the Second Punic War.
+          Crossing the Alps is high-risk: weather, terrain, and supply shortages can destroy morale.
+          A surprise arrival in Italy could shock Rome and shift the war’s momentum.
+          Your decision shapes alliances, resources, and the future balance of power.
+        </p>
       </section>
 
       <!-- CHOICES (now bottom full width) -->
@@ -124,5 +132,6 @@
 
     </section>
   </main>
+  <script type="module" src="app.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
-
 export async function fetchRoot() {
-    const res = await fetch('/api/root');
+    console.log("Fetching root node...");
+    const res = await fetch('http://localhost:5000/api/root');
+    console.log(res);
     if (!res.ok) {
         throw new Error(`Failed to fetch root node: ${res.statusText}`);
     }
@@ -8,7 +9,7 @@ export async function fetchRoot() {
 }
 
 export async function fetchNext(payload) {
-    const res = await fetch("/api/next", {
+    const res = await fetch("http://localhost:5000/api/next", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
