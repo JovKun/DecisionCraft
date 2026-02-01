@@ -10,62 +10,88 @@
 <body>
   <main class="page">
 
-    <header class="header">
-      <h1 class="title">Result:</h1>
-
-      <div class="header-actions">
+    <!-- TOP HEADER -->
+    <header class="hud">
+      <div class="hud-left">
         <a class="back-link" href="timeline.html" aria-label="Back to timeline">← Back</a>
+      </div>
+
+      <div class="hud-center">
+        <div class="hud-title">Result</div>
+        <div class="hud-sub">The timeline has shifted…</div>
+      </div>
+
+      <div class="hud-right">
+        <div class="meta-pill">
+          <div class="meta-row"><span class="meta-label">Status:</span> <span class="meta-value">Resolved</span></div>
+          <div class="meta-row"><span class="meta-label">Next:</span> <span class="meta-value">Continue</span></div>
+        </div>
       </div>
     </header>
 
-    <section class="card">
+    <!-- MAIN PANEL -->
+    <section class="panel">
 
-      <!-- ✅ OUTCOME FIRST -->
+      <!-- OUTCOME -->
       <section class="block outcome">
-        <h2 class="block-title">Outcome</h2>
-        <p class="block-text" id="result-description">
-          Your choice triggered a timeline shift. (Later you will fill this dynamically from DB/JSON.)
-        </p>
+        <div class="block-head">
+          <div class="wax-seal" aria-hidden="true"></div>
+          <div class="block-titles">
+            <h2 class="block-title">Outcome</h2>
+            <p class="block-sub">Dispatch recorded by the Council.</p>
+          </div>
+        </div>
 
-        <div class="cta-row">
-          <a class="next-btn" href="timeline_now.html">Next →</a>
+        <div class="parchment">
+          <p class="block-text" id="result-description">
+            Your choice triggered a timeline shift. (Later you will fill this dynamically from DB/JSON.)
+          </p>
+
+          <div class="parchment-rule"></div>
+
+          <div class="cta-row">
+            <a class="next-btn" href="timeline_now.html">Next →</a>
+          </div>
         </div>
       </section>
 
-      <!-- ✅ VISUALS AFTER -->
+      <!-- MEDIA -->
       <section class="block media">
-        <h2 class="block-title">Results visual media</h2>
+        <div class="media-head">
+          <h2 class="block-title">Results visual media</h2>
+          <p class="block-sub">Map change • battle consequence • political aftermath</p>
+        </div>
 
         <div class="media-box">
-          <div class="media-label">Visual</div>
-          <img
-            id="result-visual"
-            class="media-visual"
-            src="https://via.placeholder.com/1400x700.png?text=Result+Visual+(Map+Animation+or+Scene)"
-            alt="Result visual placeholder"
-          />
+          <div class="media-label">Visual Evidence</div>
+          <div class="media-frame">
+            <img
+              id="result-visual"
+              class="media-visual"
+              src="https://via.placeholder.com/1400x700.png?text=Result+Visual+(Map+Animation+or+Scene)"
+              alt="Result visual placeholder"
+            />
+          </div>
         </div>
+
+        <p class="hint">
+          If you don’t hear audio: click anywhere once (browsers often block autoplay).
+        </p>
       </section>
 
-      <!-- ✅ BACKGROUND AUDIO (hidden player, plays after user interaction if needed) -->
-      <!-- Put your audio file path in src, for example: assets/audio/hannibal_result.mp3 -->
+      <!-- AUDIO -->
       <audio id="bg-audio" autoplay loop>
         <source src="" type="audio/mpeg" />
       </audio>
 
-      <p class="hint">
-        If you don’t hear audio: click anywhere once (browsers often block autoplay).
-      </p>
-
     </section>
-
   </main>
 
   <script>
     // Autoplay fallback: if browser blocks autoplay, play after first click.
     const bg = document.getElementById("bg-audio");
     if (bg) {
-      bg.volume = 0.6; // adjust background loudness
+      bg.volume = 0.6;
       const tryPlay = () => {
         bg.play().catch(() => {});
         window.removeEventListener("click", tryPlay);

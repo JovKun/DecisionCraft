@@ -3,135 +3,192 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timeline</title>
+  <title>Alternate Timeline Simulator — Hannibal</title>
   <link rel="stylesheet" href="timeline.css" />
 </head>
 
 <body>
-  <!-- Loading Screen Overlay -->
-  <div id="loading-overlay" class="loading-overlay hidden">
-    <div class="loading-content">
-      <div class="spinner"></div>
-      <p class="loading-text">Generating alternate timeline...</p>
+
+  <!-- TOP HUD -->
+  <header class="hud">
+    <button class="back-btn" type="button" aria-label="Go back">←</button>
+
+    <div class="timeline-area">
+      <div class="timeline-title">Timeline:</div>
+
+      <div class="timeline-bar" aria-label="timeline progress">
+        <div class="timeline-line"></div>
+
+        <div class="dot done" style="left: 35%"></div>
+        <div class="dot" style="left: 40%"></div>
+        <div class="dot" style="left: 45%"></div>
+        <div class="dot" style="left: 50%"></div>
+        <div class="dot" style="left: 55%"></div>
+
+        <div class="timeline-end">end</div>
+      </div>
     </div>
-  </div>
 
-  <main class="page">
+    <div class="meta-pill">
+      <div class="meta-row"><span class="meta-label">Level:</span> <span class="meta-value">1</span></div>
+      <div class="meta-row"><span class="meta-label">Year:</span> <span class="meta-value">218 BC</span></div>
+    </div>
+  </header>
 
-    <!-- TOP BAR -->
-    <header class="topbar">
-      <!-- Back button -->
-      <button class="back-btn" id="back-btn" type="button" aria-label="Go back">
-        ←
-      </button>
+  <!-- HERO TITLE -->
+  <section class="hero-title">
+    <div class="hero-ornament" aria-hidden="true"></div>
+    <h1 class="hero-name">Hannibal Barca</h1>
+    <p class="hero-sub">Carthage • Second Punic War</p>
+  </section>
 
-      <!-- Timeline progress -->
-      <section class="timeline-header">
-        <div class="timeline-title">Timeline:</div>
+  <!-- MAIN LAYOUT -->
+  <main class="layout">
 
-        <div class="timeline-track" aria-label="Timeline progress">
-          <div class="track-line"></div>
+    <!-- MEDIA (LEFT) -->
+    <section class="card media-card ancient">
+      <div class="media-head">
+        <h2 class="section-heading gold section-title">Media</h2>
+        <p class="muted">Portrait + campaign map.</p>
+      </div>
 
-          <!-- dots: add/remove dots depending on progress -->
-          <div class="dots">
-            <span class="dot active" title="Start"></span>
-            <span class="dot active"></span>
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
+      <!-- Portrait (framed) -->
+      <div class="media-block">
+        <h3 class="section-heading small gold">Historical Figure</h3>
 
-          <div class="track-end">end</div>
-        </div>
-      </section>
-
-      <!-- Right stats -->
-      <aside class="stats">
-        <div class="stat">
-          <div class="label">Level:</div>
-          <div class="value" id="level">1</div>
-        </div>
-        <div class="stat">
-          <div class="label">Year:</div>
-          <div class="value" id="year">218 BC</div>
-        </div>
-      </aside>
-    </header>
-
-    <!-- MAIN GRID -->
-    <section class="grid">
-
-      <!-- Media Panel (left) -->
-      <section class="panel media" aria-label="Media panel">
-        <div class="panel-head">
-          <h2 class="panel-title" id="figure-name">Hannibal Barca</h2>
-          <p id="node-subtitle">1313</p>
-        </div>
-
-        <div class="media-wrap">
-          <div class="media-box">
-            <div class="media-label">Historical Figure</div>
-            <img
-              id="figure-img"
-              class="media-img"
-              src="asset\Hannibal.jpg"
-              alt="Historical figure portrait placeholder"
-            />
-          </div>
-
-          <div class="media-box">
-            <div class="media-label">World Map</div>
-            <img
-              id="map-img"
-              class="media-img"
-              src="asset\chartage.png"
-              alt="World map placeholder"
-            />
+        <div class="frame-shell">
+          <div class="frame-inner">
+            <img src="asset/Hannibal.jpg" alt="Hannibal portrait" class="media-img" />
           </div>
         </div>
-      </section>
+      </div>
 
-      <!-- CONTEXT (now on the RIGHT where choices used to be) -->
-      <section class="panel context" aria-label="Context panel">
-        <div class="panel-head">
-          <h2 class="panel-title">Context</h2>
-          <div class="panel-subtitle">Background you should know before choosing.</div>
+      <!-- Map (NO FRAME) -->
+      <div class="media-block">
+        <h3 class="section-heading small gold">World Map</h3>
+
+        <div class="map-plain">
+          <img
+            src="asset/chartage.png"
+            alt="Map of Rome and Carthage in 218 BC"
+            class="map-img-plain"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTEXT (RIGHT) -->
+    <section class="card context-card">
+      <div class="card-header context-head">
+        <h2 class="section-heading cyan heading-with-icon">
+          Context
+          <img src="asset/globe.png" alt="Globe icon" class="heading-icon heading-icon--globe" />
+        </h2>
+        <p class="muted">Background you should know before choosing.</p>
+      </div>
+
+      <article class="letter">
+        <div class="letter-top">
+          <div class="wax-seal" aria-hidden="true"></div>
+          <div class="letter-title">Dispatch from Carthage</div>
+          <div class="letter-sub">To the commander on campaign…</div>
         </div>
 
-        <p class="context-list" id="context-title">
-          Hannibal leads a Carthaginian army toward Rome during the Second Punic War.
-          Crossing the Alps is high-risk: weather, terrain, and supply shortages can destroy morale.
-          A surprise arrival in Italy could shock Rome and shift the war’s momentum.
-          Your decision shapes alliances, resources, and the future balance of power.
-        </p>
-      </section>
+        <div class="letter-body">
+          <ul class="letter-list">
+            <li>Hannibal leads a Carthaginian army toward Rome during the Second Punic War.</li>
+            <li>Crossing the Alps is high-risk: weather, terrain, and supply shortages can destroy morale.</li>
+            <li>A surprise arrival in Italy could shock Rome and shift the war’s momentum.</li>
+            <li>Your decision shapes alliances, resources, and the future balance of power.</li>
+          </ul>
 
-      <!-- CHOICES (now bottom full width) -->
-      <section class="panel choices" aria-label="Choices panel">
-        <div class="panel-head">
-          <h2 class="panel-title">Choices</h2>
-          <div class="panel-subtitle" id="prompt-short">Pick one decision to continue.</div>
+          <hr class="letter-rule" />
+
+          <h3 class="letter-h3">World State</h3>
+          <ul class="letter-list compact">
+            <li><span class="k">Threat level:</span> <span class="v">unknown</span></li>
+            <li><span class="k">Roman alertness:</span> <span class="v">low</span></li>
+            <li><span class="k">Supplies:</span> <span class="v">limited</span></li>
+          </ul>
         </div>
 
-        <div class="prompt" id="node-prompt">
+        <div class="letter-footer">
+          <span class="signature">— The Council of Elders</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- CHOICES (BOTTOM FULL WIDTH) -->
+    <section class="card card-bottom choices-card">
+      <div class="choices-top">
+        <div class="choices-title">
+          <h2 class="section-heading heading-with-icon">
+            Choices
+            <img src="asset/hands.png" alt="Human & robot hands icon" class="heading-icon heading-icon--hands" />
+          </h2>
+          <p class="muted">Pick one decision to continue.</p>
+        </div>
+
+        <div class="choices-meta">
+          <span class="pill">Stage 1 · Decision</span>
+          <span class="pill pill-warn">Choose wisely</span>
+        </div>
+      </div>
+
+      <div class="briefing">
+        <div class="briefing-badge">Mission Brief</div>
+        <div class="briefing-text">
           Rome is not expecting you. Do you attempt the Alpine crossing with elephants?
         </div>
+      </div>
 
-        <div class="choices-list" id="choices">
-          <button class="choice-btn" type="button">Cross the Alps immediately</button>
-          <button class="choice-btn" type="button">Wait for reinforcements</button>
-          <button class="choice-btn" type="button">Attack a different route (safer path)</button>
-          <button class="choice-btn" type="button">Retreat and regroup</button>
-        </div>
+      <div class="choices-grid fancy">
+        <a class="choice choice-a" href="result.html">
+          <div class="choice-main">
+            <div class="choice-title">Cross the Alps immediately</div>
+            <div class="choice-sub">High impact. High risk. Maximum surprise.</div>
+          </div>
+          <div class="choice-tags">
+            <span class="tag tag-risk">Risk: High</span>
+            <span class="tag tag-reward">Reward: High</span>
+          </div>
+        </a>
 
-        <pre class="world-state" id="world-state">World State:
-- threat_level: unknown
-- roman_alertness: low
-- supplies: limited</pre>
-      </section>
+        <a class="choice choice-b" href="result.html">
+          <div class="choice-main">
+            <div class="choice-title">Wait for reinforcements</div>
+            <div class="choice-sub">Stabilize supply. Delay surprise.</div>
+          </div>
+          <div class="choice-tags">
+            <span class="tag tag-risk">Risk: Medium</span>
+            <span class="tag tag-reward">Reward: Medium</span>
+          </div>
+        </a>
 
+        <a class="choice choice-c" href="result.html">
+          <div class="choice-main">
+            <div class="choice-title">Attack a different route (safer path)</div>
+            <div class="choice-sub">Avoid the worst terrain. Lower shock factor.</div>
+          </div>
+          <div class="choice-tags">
+            <span class="tag tag-risk">Risk: Low</span>
+            <span class="tag tag-reward">Reward: Medium</span>
+          </div>
+        </a>
+
+        <a class="choice choice-d" href="result.html">
+          <div class="choice-main">
+            <div class="choice-title">Retreat and regroup</div>
+            <div class="choice-sub">Preserve forces. Lose momentum.</div>
+          </div>
+          <div class="choice-tags">
+            <span class="tag tag-risk">Risk: Low</span>
+            <span class="tag tag-reward">Reward: Low</span>
+          </div>
+        </a>
+      </div>
     </section>
   </main>
-  <script type="module" src="app.js"></script>
+
 </body>
 </html>
