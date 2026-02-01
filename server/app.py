@@ -19,7 +19,7 @@ START = {
     "leader" : {"id": "1", "name" : "Hannibal Barca"}
 }
 
-@app.get("/api/state")
+@app.get("/api/root")
 async def api_root():
     run_id = secrets.token_hex(4)
     cur_node = await generate_node(1, run_id)

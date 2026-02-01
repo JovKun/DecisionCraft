@@ -61,7 +61,7 @@ def validate_node_payload(payload: Dict[str, Any]) -> Tuple[bool, List[str]]:
     #choices
     choices = node.get("choices")
     if not isinstance(choices, list) or len(choices)<2 or len(choices)>4:
-        errors.append("Field 'node.choices' must be a list with 2-4 items.")
+        errors.append(f"Field 'node.choices' must be a list with 2-4 items. Current length: {len(choices)}")
         return False, errors
     
     for i, choice in enumerate(choices):
@@ -71,27 +71,10 @@ def validate_node_payload(payload: Dict[str, Any]) -> Tuple[bool, List[str]]:
         
         if not isinstance(choice.get("id"), str) or not choice["id"]:
             errors.append(f"missing/invalid 'node.choices[{i}].id' field.")
-
-        if not isinstance(choice.get("label"), str) or not choice["label"].strip():
-            errors.append(f"missing/invalid 'node.choices[{i}].label' field.")
-
-        effects = choice.get("effects")
-        if not isinstance(effects, dict):
-            errors.append(f"Field 'node.choices[{i}].effects' must be a dictionary.")
-            continue
-
-        for key, value in effects.items():
-            if key not in ALLOWED_EFFECT_KEYS:
-                errors.append(f"Invalid effect key '{key}' in 'node.choices[{i}].effects'.")
-            if not isinstance(value, int) or not (EFFECT_MIN <= value <= EFFECT_MAX):
-                errors.append(f"Effect '{key}' in 'node.choices[{i}].effects' must be an integer between {EFFECT_MIN} and {EFFECT_MAX}.")
-            
-            else:
-                if value < EFFECT_MIN or value > EFFECT_MAX:
-                    errors.append(f"Effect '{key}' in 'node.choices[{i}].effects' must be between {EFFECT_MIN} and {EFFECT_MAX}.")
     
     return len(errors) == 0, errors
 
+# Test the validation function with a sample payload
 if __name__ == "__main__":
     sample_payload = { 
         "run_id": 1,
@@ -105,21 +88,21 @@ if __name__ == "__main__":
             "prompt": "You are Alexander the Great in 334 BCE. You have just crossed into Asia Minor with your army, beginning your campaign against the Persian Empire. What will you do next?",
             "context": "In 334 BCE, Alexander the Great, newly crowned King of Macedon, leads his army across the Hellespont into Asia Minor, launching his campaign against the Persian Empire.",
             "choices": [
-            {
-                "id": "choice_1",
-                "text": "1. Launch a campaign to invade Persia, seeking to fulfill your father's ambitions and expand your empire."
-            },
-            {
-                "id": "choice_2",
-                "text": "2. Strengthen your position in Greece through diplomacy, forging alliances and consolidating power before engaging in further military campaigns."
-            },
-            {
-                "id": "choice_3",
-                "text": "3. Focus on internal reforms within Macedon to stabilize your rule and improve administration, delaying any plans for foreign conquest."       
-            }
+                {
+                    "id": "choice_1",
+                    "text": "1. Launch a campaign to invade Persia, seeking to fulfill your father's ambitions and expand your empire."
+                },
+                {
+                    "id": "choice_2",
+                    "text": "2. Strengthen your position in Greece through diplomacy, forging alliances and consolidating power before engaging in further military campaigns."
+                },
+                {
+                    "id": "choice_3",
+                    "text": "3. Focus on internal reforms within Macedon to stabilize your rule and improve administration, delaying any plans for foreign conquest."       
+                }
             ]
         }
     }
     
     res = validate_node_payload(sample_payload)
-    print(res);
+    print(res)

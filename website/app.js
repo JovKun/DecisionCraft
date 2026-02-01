@@ -12,7 +12,16 @@ const ui = {
     reset: el("node-reset"),
     title: el("node-title"),
     subtitle: el("node-subtitle"),
+    loadingOverlay: el("loading-overlay"),
 };
+
+function showLoading() {
+    ui.loadingOverlay?.classList.remove("hidden");
+}
+
+function hideLoading() {
+    ui.loadingOverlay?.classList.add("hidden");
+}
 
 let year = -216 
 let currentNodeId = "Hannibal Barca";
@@ -60,6 +69,7 @@ async function onChoose(choice) {
         history.push(choice.id);
         renderState();
 
+        showLoading();
         ui.meta.textContent = `Generating next decision...`;
 
         const nextPayload = await fetchNext({
@@ -74,11 +84,14 @@ async function onChoose(choice) {
     } catch (err) {
         console.error("Error fetching next node:", err);
         ui.meta.textContent = `Error fetching next node: ${err.message}`;
+    } finally {
+        hideLoading();
     }
 }
 
 async function startNewRun() {
     try{
+        showLoading();
         ui.meta.textContent = `Starting new run...`;
         resetState();
         history = [];
@@ -88,6 +101,8 @@ async function startNewRun() {
     } catch (err) {
         console.error("Error starting new run:", err);
         ui.meta.textContent = `Error starting new run: ${err.message}`;
+    } finally {
+        hideLoading();
     }
 }
 
