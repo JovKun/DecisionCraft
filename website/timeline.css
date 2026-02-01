@@ -252,6 +252,15 @@ body::before{
   height: auto;
   display:block;
 }
+.media-image {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-top: 10px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
 
 /* ==========================
    CONTEXT (now right side)
