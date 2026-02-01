@@ -11,13 +11,15 @@ current_leader = {
     "id": 1,
     "name" : "Hannibal Barca",
     "run_id": 1
-    
 }
 
 @app.get("/api/root")
 async def api_root():
     run_id = secrets.token_hex(4)
     cur_node = await generate_node(1, run_id)
+    current_leader["id"] = 1
+    current_leader["name"] = cur_node["leader"]["name"]
+    current_leader["run_id"] = run_id
     return jsonify(cur_node)
 
 @app.post("/api/next")

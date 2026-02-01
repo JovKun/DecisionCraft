@@ -6,7 +6,7 @@ with open("./data/ruleset.txt", "r") as f:
 
 # Import necessary libraries
 import asyncio
-from flask import json
+from flask import json, Flask
 from dotenv import load_dotenv
 
 import requests
@@ -60,7 +60,7 @@ async def generate_node(character_id, run_id):
 
     # Generate prompt
     payload = {
-        "model": "openai/gpt-4.1-mini",
+        "model": "openai/gpt-4o-mini",
         "messages": [
             {
                 "role": "system",
@@ -92,6 +92,9 @@ async def generate_node(character_id, run_id):
     choices_data = choices_response.json()
     choices = choices_data.get("choices")[0].get("message").get("content")
 
+    # Skip choices that don't start with a number since ChatGPT often outputs lines that are not choices and limit to 3 choices
+    choices = "\n".join([choice for choice in choices.split('\n') if choice.strip() and choice.strip()[0].isdigit()][:3])
+
     last_errors = []
 
     for _ in range(MAX_ATTEMPTS):
@@ -114,7 +117,6 @@ async def generate_node(character_id, run_id):
                 ]
             }
         }
-
 
         # Validate the generated payload
         ok, errors = validate_node_payload(return_payload)
