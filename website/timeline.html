@@ -30,16 +30,16 @@
     </div>
 
     <div class="meta-pill">
-      <div class="meta-row"><span class="meta-label">Level:</span> <span class="meta-value">1</span></div>
-      <div class="meta-row"><span class="meta-label">Year:</span> <span class="meta-value">218 BC</span></div>
+      <div class="meta-row"><span class="meta-label">Level:</span> <span class="meta-value" id="node-level">1</span></div>
+      <div class="meta-row"><span class="meta-label">Year:</span> <span class="meta-value" id="node-year">218 BC</span></div>
     </div>
   </header>
 
   <!-- HERO TITLE -->
   <section class="hero-title">
     <div class="hero-ornament" aria-hidden="true"></div>
-    <h1 class="hero-name">Hannibal Barca</h1>
-    <p class="hero-sub">Carthage • Second Punic War</p>
+    <h1 class="hero-name" id="node-leader">Hannibal Barca</h1>
+    <p class="hero-sub" id="node-subtitle">Carthage • Second Punic War</p>
   </section>
 
   <!-- MAIN LAYOUT -->
@@ -95,21 +95,12 @@
         </div>
 
         <div class="letter-body">
-          <ul class="letter-list">
-            <li>Hannibal leads a Carthaginian army toward Rome during the Second Punic War.</li>
-            <li>Crossing the Alps is high-risk: weather, terrain, and supply shortages can destroy morale.</li>
-            <li>A surprise arrival in Italy could shock Rome and shift the war’s momentum.</li>
-            <li>Your decision shapes alliances, resources, and the future balance of power.</li>
-          </ul>
+          <p id="node-context">Context</p>
 
           <hr class="letter-rule" />
 
           <h3 class="letter-h3">World State</h3>
-          <ul class="letter-list compact">
-            <li><span class="k">Threat level:</span> <span class="v">unknown</span></li>
-            <li><span class="k">Roman alertness:</span> <span class="v">low</span></li>
-            <li><span class="k">Supplies:</span> <span class="v">limited</span></li>
-          </ul>
+          <p id="world-state">Desc</p>
         </div>
 
         <div class="letter-footer">
@@ -130,65 +121,26 @@
         </div>
 
         <div class="choices-meta">
-          <span class="pill">Stage 1 · Decision</span>
+          <span class="pill">Decision Stage</span>
           <span class="pill pill-warn">Choose wisely</span>
         </div>
       </div>
 
       <div class="briefing">
         <div class="briefing-badge">Mission Brief</div>
-        <div class="briefing-text">
+        <div class="briefing-text" id="node-prompt">
           Rome is not expecting you. Do you attempt the Alpine crossing with elephants?
         </div>
       </div>
 
-      <div class="choices-grid fancy">
-        <a class="choice choice-a" href="result.html">
-          <div class="choice-main">
-            <div class="choice-title">Cross the Alps immediately</div>
-            <div class="choice-sub">High impact. High risk. Maximum surprise.</div>
-          </div>
-          <div class="choice-tags">
-            <span class="tag tag-risk">Risk: High</span>
-            <span class="tag tag-reward">Reward: High</span>
-          </div>
-        </a>
-
-        <a class="choice choice-b" href="result.html">
-          <div class="choice-main">
-            <div class="choice-title">Wait for reinforcements</div>
-            <div class="choice-sub">Stabilize supply. Delay surprise.</div>
-          </div>
-          <div class="choice-tags">
-            <span class="tag tag-risk">Risk: Medium</span>
-            <span class="tag tag-reward">Reward: Medium</span>
-          </div>
-        </a>
-
-        <a class="choice choice-c" href="result.html">
-          <div class="choice-main">
-            <div class="choice-title">Attack a different route (safer path)</div>
-            <div class="choice-sub">Avoid the worst terrain. Lower shock factor.</div>
-          </div>
-          <div class="choice-tags">
-            <span class="tag tag-risk">Risk: Low</span>
-            <span class="tag tag-reward">Reward: Medium</span>
-          </div>
-        </a>
-
-        <a class="choice choice-d" href="result.html">
-          <div class="choice-main">
-            <div class="choice-title">Retreat and regroup</div>
-            <div class="choice-sub">Preserve forces. Lose momentum.</div>
-          </div>
-          <div class="choice-tags">
-            <span class="tag tag-risk">Risk: Low</span>
-            <span class="tag tag-reward">Reward: Low</span>
-          </div>
-        </a>
+      <div class="choices-grid fancy" id="node-choices">
+        <a class="choice choice-1" href="result.html">Choice 1</a>
+        <a class="choice choice-2" href="result.html">Choice 2</a>
+        <a class="choice choice-3" href="result.html">Choice 3</a>
+        <a class="choice choice-4" href="result.html">Choice 4</a>
       </div>
     </section>
   </main>
-
+  <script type="module" src="./app.js"></script>
 </body>
 </html>

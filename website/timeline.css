@@ -630,15 +630,10 @@ body::before{
   box-shadow: 0 22px 60px rgba(0,0,0,0.42);
 }
 
-.choice-a::before{ background: rgba(127,231,255,0.55); }
-.choice-b::before{ background: rgba(242,196,109,0.60); }
-.choice-c::before{ background: rgba(160,255,190,0.48); }
-.choice-d::before{ background: rgba(255,160,160,0.48); }
-
-.choice-title{ font-size: 15px; font-weight: 950; }
-.choice-sub{ font-size: 12px; color: rgba(245,236,220,0.65); font-weight: 800; }
-
-.choice-tags{ display:flex; gap: 8px; flex-wrap: wrap; }
+.choice-1::before{ background: rgba(127,231,255,0.55); }
+.choice-2::before{ background: rgba(242,196,109,0.60); }
+.choice-3::before{ background: rgba(160,255,190,0.48); }
+.choice-4::before{ background: rgba(255,160,160,0.48); }
 
 .tag{
   padding: 6px 10px;

@@ -4,13 +4,14 @@ import { getState, applyEffects, resetState, snapshotState } from "./state.js";
 const el = (id) => document.getElementById(id);
 
 const ui = {
+    level: el("node-level"),
     prompt: el("node-prompt"),
-    choices: el("choices"),
-    context: el("context-title"),
+    context: el("node-context"),
+    choices: el("node-choices"),
     worldstate: el("world-state"),
     reset: el("node-reset"),
-    leader: el("figure-name"),
-    year: el("node-subtitle"),
+    leader: el("node-leader"),
+    year: el("node-year"),
     loadingOverlay: el("loading-overlay"),
 };
 
@@ -22,6 +23,7 @@ function hideLoading() {
     ui.loadingOverlay?.classList.add("hidden");
 }
 
+let level = 1;
 let runId = 1;
 let year = -213; 
 let history = [];
@@ -37,20 +39,33 @@ function renderNode(payload) {
     year = payload.year;
     leader = payload.leader;
     context = payload.node.context;
+    level = leader.id;
 
     ui.leader.textContent = leader.name;
-    ui.year.textContent = `Year: ${year}`;
+    ui.year.textContent = year;
     ui.prompt.textContent = payload.node.prompt;
     ui.context.textContent = context;
 
-    //Choice Buttons
+    // Loop through choices and choice elements together
+    const constChoices = [
+        {text: "Choice 1", class: "choice choice-1", href: "result.html"},
+        {text: "Choice 2", class: "choice choice-2", href: "result.html"},
+        {text: "Choice 3", class: "choice choice-3", href: "result.html"},
+        {text: "Choice 4", class: "choice choice-4", href: "result.html"}
+    ]
+
     ui.choices.innerHTML = "";
-    for (const choice of payload.node.choices || []) {
-        const btn = document.createElement("button");
-        btn.textContent = choice.text;
-        btn.onclick = () => onChoose(choice);
-        ui.choices.appendChild(btn);
-    }
+    constChoices.forEach((choiceEl, index) => {
+        const choiceData = payload.node.choices[index];
+        if (choiceData) {
+            const a = document.createElement("a");
+            a.className = choiceEl.class;
+            a.href = choiceEl.href;
+            a.textContent = choiceEl.text;
+
+            ui.choices.appendChild(a);
+        }
+    });
 
     renderState();
 }
