@@ -156,17 +156,19 @@ async function onChoose(choice) {
     showLoading();
 
     // OPTIONAL: if you want the next node ready when returning to timeline.html
-    const nextPayload = await fetchNext({
-      run_id: runId,
-      year: year,
-      leader_id: leader.id,
-      choice_id: choice.id,
-      history: [...history, choice.id],
-      state: snapshotState(),
-    });
+    // const nextPayload = await fetchNext({
+    //   run_id: runId,
+    //   year: year,
+    //   leader_id: leader.id,
+    //   choice_id: choice.id,
+    //   history: [...history, choice.id],
+    //   state: snapshotState(),
+    // });
 
-    // Save next payload so timeline.html can instantly render it later (optional)
-    localStorage.setItem("next_payload", JSON.stringify(nextPayload));
+    // console.log("Fetched next payload:", nextPayload);
+
+    // // Save next payload so timeline.html can instantly render it later (optional)
+    // localStorage.setItem("next_payload", JSON.stringify(nextPayload));
 
     // ✅ Redirect
     window.location.href = "result.html";
@@ -179,16 +181,15 @@ async function onChoose(choice) {
 async function startNewRun() {
     showLoading();
     resetState();
-    localStorage.clear();
     history = [];
 
     const rootPayload = await fetchRoot();
     renderNode(rootPayload);
+    console.log("Starting new run...");
     hideLoading();
 }
 
 // Don't initialize app until redirected to timeline.html and we are not redirecting from result.html
-if (window.location.pathname.endsWith("timeline.html") && !document.referrer.endsWith("result.html")) {
-    startNewRun();
-    console.log("Starting new run...");
+if (window.location.pathname.endsWith("timeline.html")) {
+    await startNewRun();
 }

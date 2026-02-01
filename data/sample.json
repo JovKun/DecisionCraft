@@ -1,54 +1,152 @@
-[{
+[
+  {
     "run_id": 1,
     "year": -334,
-    "leader": {
-      "id": 1,
-      "name": "Alexander the Great"
-    },
+    "leader": { "id": 1, "name": "Alexander the Great" },
     "node": {
       "id": 1,
-      "prompt": "You are Alexander the Great in 334 BCE. You have just crossed into Asia Minor with your army, beginning your campaign against the Persian Empire. What will you do next?",
-      "context": "In 334 BCE, Alexander the Great, newly crowned King of Macedon, leads his army across the Hellespont into Asia Minor, launching his campaign against the Persian Empire.",
+      "prompt": "You are Alexander the Great in 334 BCE, having just crossed into Asia Minor. How will you begin your campaign against Persia?",
+      "context": "Alexander launches his invasion of the Persian Empire after securing Macedonia and Greece.",
       "choices": [
-        {
-          "id": "choice_1",
-          "text": "1. Launch a campaign to invade Persia, seeking to fulfill your father's ambitions and expand your empire."
-        },
-        {
-          "id": "choice_2",
-          "text": "2. Strengthen your position in Greece through diplomacy, forging alliances and consolidating power before engaging in further military campaigns."
-        },
-        {
-          "id": "choice_3",
-          "text": "3. Focus on internal reforms within Macedon to stabilize your rule and improve administration, delaying any plans for foreign conquest."       
-        }
+        { "id": "choice_1", "text": "Launch a decisive attack against Persian satraps in Asia Minor." },
+        { "id": "choice_2", "text": "Secure coastal cities to deny Persia naval dominance." },
+        { "id": "choice_3", "text": "Pause to consolidate supply lines and alliances." }
       ]
     }
   },
   {
-    "run_id": 1,
-    "year": -113,
-    "leader": {
-      "id": 2,
-      "name": "Hannibal Barca"
-    },
+    "run_id": 2,
+    "year": -216,
+    "leader": { "id": 2, "name": "Hannibal Barca" },
     "node": {
       "id": 2,
-      "prompt": "You are Hannibal Barca in 113 BCE. You are preparing to challenge Rome's dominance in the Mediterranean. What will you do next?",
-      "context": "In 113 BCE, Hannibal Barca, the Carthaginian general, is strategizing his campaign against Rome, aiming to expand Carthage's influence and power.",
+      "prompt": "You are Hannibal Barca after your victory at Cannae. Rome is vulnerable—what is your next move?",
+      "context": "Carthage has inflicted massive losses on Rome during the Second Punic War.",
       "choices": [
-        {
-          "id": "choice_1",
-          "text": "1. Sample Choice 1 text."
-        },
-        {
-          "id": "choice_2",
-          "text": "2. Sample Choice 2 text."
-        },
-        {
-          "id": "choice_3",
-          "text": "3. Sample Choice 3 text."       
-        }
+        { "id": "choice_1", "text": "March directly on Rome to force surrender." },
+        { "id": "choice_2", "text": "Seek alliances with Rome’s Italian allies." },
+        { "id": "choice_3", "text": "Wait for reinforcements from Carthage." }
       ]
     }
-}]
+  },
+  {
+    "run_id": 3,
+    "year": -49,
+    "leader": { "id": 3, "name": "Julius Caesar" },
+    "node": {
+      "id": 3,
+      "prompt": "You are Julius Caesar at the Rubicon. Do you defy the Senate?",
+      "context": "Crossing the Rubicon would ignite a Roman civil war.",
+      "choices": [
+        { "id": "choice_1", "text": "Cross the Rubicon and march on Rome." },
+        { "id": "choice_2", "text": "Negotiate with the Senate for compromise." },
+        { "id": "choice_3", "text": "Withdraw and preserve political legitimacy." }
+      ]
+    }
+  },
+  {
+    "run_id": 4,
+    "year": -48,
+    "leader": { "id": 4, "name": "Cleopatra VII" },
+    "node": {
+      "id": 4,
+      "prompt": "You are Cleopatra VII seeking to secure Egypt’s throne amid Roman intervention.",
+      "context": "Rome’s civil war spills into Egypt, threatening its independence.",
+      "choices": [
+        { "id": "choice_1", "text": "Align with Julius Caesar for political support." },
+        { "id": "choice_2", "text": "Rule independently through internal reforms." },
+        { "id": "choice_3", "text": "Play Roman rivals against each other." }
+      ]
+    }
+  },
+  {
+    "run_id": 5,
+    "year": 70,
+    "leader": { "id": 5, "name": "Titus" },
+    "node": {
+      "id": 5,
+      "prompt": "You are Titus during the siege of Jerusalem. How do you proceed?",
+      "context": "Rome faces a decisive moment in suppressing the Jewish revolt.",
+      "choices": [
+        { "id": "choice_1", "text": "Assault the city to end resistance quickly." },
+        { "id": "choice_2", "text": "Continue the siege to force surrender." },
+        { "id": "choice_3", "text": "Negotiate to preserve the city." }
+      ]
+    }
+  },
+  {
+    "run_id": 6,
+    "year": 312,
+    "leader": { "id": 6, "name": "Constantine the Great" },
+    "node": {
+      "id": 6,
+      "prompt": "You are Constantine before the Battle of the Milvian Bridge. What guides your rule?",
+      "context": "Constantine competes for control of the Roman Empire.",
+      "choices": [
+        { "id": "choice_1", "text": "Embrace Christianity to unify the empire." },
+        { "id": "choice_2", "text": "Maintain traditional Roman religious practices." },
+        { "id": "choice_3", "text": "Rule pragmatically without religious alignment." }
+      ]
+    }
+  },
+  {
+    "run_id": 7,
+    "year": 800,
+    "leader": { "id": 7, "name": "Charlemagne" },
+    "node": {
+      "id": 7,
+      "prompt": "You are Charlemagne crowned Emperor. How do you govern your realm?",
+      "context": "Western Europe seeks stability after centuries of fragmentation.",
+      "choices": [
+        { "id": "choice_1", "text": "Centralize authority under imperial rule." },
+        { "id": "choice_2", "text": "Empower local nobles for loyalty." },
+        { "id": "choice_3", "text": "Focus on cultural and educational reform." }
+      ]
+    }
+  },
+  {
+    "run_id": 8,
+    "year": 1187,
+    "leader": { "id": 8, "name": "Saladin" },
+    "node": {
+      "id": 8,
+      "prompt": "You are Saladin after retaking Jerusalem. What is your priority?",
+      "context": "The Crusader states remain a threat to regional stability.",
+      "choices": [
+        { "id": "choice_1", "text": "Pursue peace with the Crusader kingdoms." },
+        { "id": "choice_2", "text": "Continue military campaigns." },
+        { "id": "choice_3", "text": "Consolidate internal governance." }
+      ]
+    }
+  },
+  {
+    "run_id": 9,
+    "year": 1206,
+    "leader": { "id": 9, "name": "Genghis Khan" },
+    "node": {
+      "id": 9,
+      "prompt": "You are Genghis Khan, newly uniting the Mongol tribes. What comes next?",
+      "context": "A unified Mongol identity creates unprecedented opportunity.",
+      "choices": [
+        { "id": "choice_1", "text": "Launch raids beyond the steppe." },
+        { "id": "choice_2", "text": "Strengthen internal laws and discipline." },
+        { "id": "choice_3", "text": "Form trade relations with neighbors." }
+      ]
+    }
+  },
+  {
+    "run_id": 10,
+    "year": 1492,
+    "leader": { "id": 10, "name": "Christopher Columbus" },
+    "node": {
+      "id": 10,
+      "prompt": "You are Christopher Columbus preparing to sail west. How do you proceed?",
+      "context": "European powers seek new trade routes to Asia.",
+      "choices": [
+        { "id": "choice_1", "text": "Sail west across the Atlantic." },
+        { "id": "choice_2", "text": "Delay to gather more funding." },
+        { "id": "choice_3", "text": "Abandon the expedition." }
+      ]
+    }
+  }
+]
