@@ -1,17 +1,54 @@
-{
-  "figure": "Hannibal Barca",
-  "year": -216,
-  "prompt": "Hannibal Barca considers a decisive campaign against a rival regional power.",
-  "choices": [
-    {
-      "id": "launch_offensive",
-      "label": "Launch a rapid offensive",
-      "effects": { "military_capacity": -2, "legitimacy": 1 }
+[{
+    "run_id": 1,
+    "year": -334,
+    "leader": {
+      "id": 1,
+      "name": "Alexander the Great"
     },
-    {
-      "id": "consolidate_allies",
-      "label": "Consolidate supply lines and allies",
-      "effects": { "economic_scale": 1 }
+    "node": {
+      "id": 1,
+      "prompt": "You are Alexander the Great in 334 BCE. You have just crossed into Asia Minor with your army, beginning your campaign against the Persian Empire. What will you do next?",
+      "context": "In 334 BCE, Alexander the Great, newly crowned King of Macedon, leads his army across the Hellespont into Asia Minor, launching his campaign against the Persian Empire.",
+      "choices": [
+        {
+          "id": "choice_1",
+          "text": "1. Launch a campaign to invade Persia, seeking to fulfill your father's ambitions and expand your empire."
+        },
+        {
+          "id": "choice_2",
+          "text": "2. Strengthen your position in Greece through diplomacy, forging alliances and consolidating power before engaging in further military campaigns."
+        },
+        {
+          "id": "choice_3",
+          "text": "3. Focus on internal reforms within Macedon to stabilize your rule and improve administration, delaying any plans for foreign conquest."       
+        }
+      ]
     }
-  ]
-}
+  },
+  {
+    "run_id": 1,
+    "year": -113,
+    "leader": {
+      "id": 2,
+      "name": "Hannibal Barca"
+    },
+    "node": {
+      "id": 2,
+      "prompt": "You are Hannibal Barca in 113 BCE. You are preparing to challenge Rome's dominance in the Mediterranean. What will you do next?",
+      "context": "In 113 BCE, Hannibal Barca, the Carthaginian general, is strategizing his campaign against Rome, aiming to expand Carthage's influence and power.",
+      "choices": [
+        {
+          "id": "choice_1",
+          "text": "1. Sample Choice 1 text."
+        },
+        {
+          "id": "choice_2",
+          "text": "2. Sample Choice 2 text."
+        },
+        {
+          "id": "choice_3",
+          "text": "3. Sample Choice 3 text."       
+        }
+      ]
+    }
+}]
