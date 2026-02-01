@@ -81,10 +81,10 @@ function renderNode(payload) {
 
     ui.choices.innerHTML = "";
     const slots = [
-        { class: "choice choice-1"},
-        { class: "choice choice-2"},
-        { class: "choice choice-3"},
-        { class: "choice choice-4"},
+        { class: "choice choice-1" },
+        { class: "choice choice-2" },
+        { class: "choice choice-3" },
+        { class: "choice choice-4" },
     ];
     slots.forEach((slot, index) => {
         const choiceData = payload.node.choices?.[index];
@@ -117,8 +117,6 @@ function renderNode(payload) {
         }
     });
     */
-
-    renderState();
 }
 
 function loadTimeLine() {
@@ -157,6 +155,9 @@ async function onChoose(choice) {
     });
     saveTimeLine(entries);
     showLoading();
+
+    // Send outcome to result.html (where the ith outcome is stored at choice[i].outcome)
+    localStorage.setItem("last_outcome", choice.outcome);
 
     // OPTIONAL: if you want the next node ready when returning to timeline.html
     // const nextPayload = await fetchNext({

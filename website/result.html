@@ -54,7 +54,7 @@
         <div class="parchment parchment-big">
 
           <!-- ✅ AI GENERATED OUTCOME BOX -->
-          <div class="ai-outcome-box" id="ai-outcome">
+          <div class="ai-outcome-box" id="node-outcome">
             Awaiting outcome from the Oracle of History...
           </div>
 
@@ -74,14 +74,12 @@
 
   <!-- Later: you will replace this with real AI JSON response -->
   <script>
+
     // Example placeholder AI outcome (testing)
-    const aiOutcomeBox = document.getElementById("ai-outcome");
+    const aiOutcomeBox = document.getElementById("node-outcome");
 
     // Simulated AI-generated text
-    aiOutcomeBox.textContent =
-      "Your bold decision has fractured the balance of the Mediterranean. " +
-      "Rome reels in confusion, alliances tremble, and Carthage gains an early advantage. " +
-      "Yet the gods of war demand payment… and the journey ahead will not be merciful.";
+    aiOutcomeBox.textContent = "Outcome " + (localStorage.getItem("last_outcome") || "No outcome available.");
   </script>
 
 </body>
