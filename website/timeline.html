@@ -3,125 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Timeline</title>
+  <title>Alternate Timeline Simulator — Hannibal</title>
   <link rel="stylesheet" href="timeline.css" />
 </head>
 
 <body>
-  <main class="page">
+  <!-- Top HUD -->
+  <header class="hud">
+    <button class="back-btn" type="button" aria-label="Go back" onclick="history.back()">
+      ←
+    </button>
 
-    <!-- TOP BAR -->
-    <header class="topbar">
-      <!-- Back button -->
-      <button class="back-btn" id="back-btn" type="button" aria-label="Go back">
-        ←
-      </button>
+    <div class="timeline-area">
+      <div class="timeline-title">Timeline:</div>
 
-      <!-- Timeline progress -->
-      <section class="timeline-header">
-        <div class="timeline-title">Timeline:</div>
+      <!--
+        Stage 1 (current): first dot is active.
+        --progress controls how much of the line is "lit".
+        Here it's set to match the first dot position (35%).
+      -->
+      <div class="timeline-bar" aria-label="timeline progress" style="--progress: 35%;">
+        <div class="timeline-line"></div>
 
-        <div class="timeline-track" aria-label="Timeline progress">
-          <div class="track-line"></div>
+        <!-- Dots -->
+        <div class="dot active" style="left: 35%"></div>
+        <div class="dot" style="left: 45%"></div>
+        <div class="dot" style="left: 55%"></div>
+        <div class="dot" style="left: 65%"></div>
+        <div class="dot" style="left: 75%"></div>
 
-          <!-- dots: add/remove dots depending on progress -->
-          <div class="dots">
-            <span class="dot active" title="Start"></span>
-            <span class="dot active"></span>
-            <span class="dot active"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
+        <div class="timeline-end">end</div>
+      </div>
+    </div>
 
-          <div class="track-end">end</div>
+    <div class="meta-pill">
+      <div class="meta-row"><span class="meta-label">Level:</span> <span class="meta-value">1</span></div>
+      <div class="meta-row"><span class="meta-label">Year:</span> <span class="meta-value">218 BC</span></div>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <main class="layout">
+    <!-- Left Card: Figure + Map -->
+    <section class="card card-left">
+      <div class="card-header">
+        <h1 class="figure-name">Hannibal Barca</h1>
+        <p class="figure-sub">Carthage • Second Punic War</p>
+      </div>
+
+      <div class="media-block">
+        <h2 class="section-heading gold">Historical Figure</h2>
+        <div class="img-shell">
+          <img src="asset/Hannibal.jpg" alt="Hannibal portrait" class="media-img" />
         </div>
-      </section>
+      </div>
 
-      <!-- Right stats -->
-      <aside class="stats">
-        <div class="stat">
-          <div class="label">Level:</div>
-          <div class="value" id="level">1</div>
+      <div class="media-block">
+        <h2 class="section-heading gold">World Map</h2>
+        <div class="img-shell">
+          <img src="asset/chartage.png" alt="Map of Rome and Carthage in 218 BC" class="media-img map-img" />
         </div>
-        <div class="stat">
-          <div class="label">Year:</div>
-          <div class="value" id="year">218 BC</div>
-        </div>
-      </aside>
-    </header>
+      </div>
+    </section>
 
-    <!-- MAIN GRID -->
-    <section class="grid">
+    <!-- Right Card: Context (letter style) -->
+    <section class="card card-right">
+      <div class="card-header">
+        <h2 class="section-heading cyan">Context</h2>
+        <p class="muted">Background you should know before choosing.</p>
+      </div>
 
-      <!-- Media Panel (left) -->
-      <section class="panel media" aria-label="Media panel">
-        <div class="panel-head">
-          <h2 class="panel-title" id="figure-name">Hannibal Barca</h2>
-          <div class="panel-subtitle" id="figure-subtitle">Carthage • Second Punic War</div>
-        </div>
-
-        <div class="media-wrap">
-          <div class="media-box">
-            <div class="media-label">Historical Figure</div>
-            <img
-              id="figure-img"
-              class="media-img"
-              src="asset\Hannibal.jpg"
-              alt="Historical figure portrait placeholder"
-            />
-          </div>
-
-          <div class="media-box">
-            <div class="media-label">World Map</div>
-            <img
-              id="map-img"
-              class="media-img"
-              src="asset\chartage.png"
-              alt="World map placeholder"
-            />
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTEXT (now on the RIGHT where choices used to be) -->
-      <section class="panel context" aria-label="Context panel">
-        <div class="panel-head">
-          <h2 class="panel-title">Context</h2>
-          <div class="panel-subtitle">Background you should know before choosing.</div>
+      <!-- Letter Style -->
+      <article class="letter">
+        <div class="letter-top">
+          <div class="wax-seal" aria-hidden="true"></div>
+          <div class="letter-title">Dispatch from Carthage</div>
+          <div class="letter-sub">To the commander on campaign…</div>
         </div>
 
-        <ul class="context-list" id="node-context">
-          <li>Hannibal leads a Carthaginian army toward Rome during the Second Punic War.</li>
-          <li>Crossing the Alps is high-risk: weather, terrain, and supply shortages can destroy morale.</li>
-          <li>A surprise arrival in Italy could shock Rome and shift the war’s momentum.</li>
-          <li>Your decision shapes alliances, resources, and the future balance of power.</li>
-        </ul>
-      </section>
+        <div class="letter-body">
+          <ul class="letter-list">
+            <li>Hannibal leads a Carthaginian army toward Rome during the Second Punic War.</li>
+            <li>Crossing the Alps is high-risk: weather, terrain, and supply shortages can destroy morale.</li>
+            <li>A surprise arrival in Italy could shock Rome and shift the war’s momentum.</li>
+            <li>Your decision shapes alliances, resources, and the future balance of power.</li>
+          </ul>
 
-      <!-- CHOICES (now bottom full width) -->
-      <section class="panel choices" aria-label="Choices panel">
-        <div class="panel-head">
-          <h2 class="panel-title">Choices</h2>
-          <div class="panel-subtitle" id="prompt-short">Pick one decision to continue.</div>
+          <hr class="letter-rule" />
+
+          <h3 class="letter-h3">World State</h3>
+          <ul class="letter-list compact">
+            <li><span class="k">Threat level:</span> <span class="v">unknown</span></li>
+            <li><span class="k">Roman alertness:</span> <span class="v">low</span></li>
+            <li><span class="k">Supplies:</span> <span class="v">limited</span></li>
+          </ul>
         </div>
 
-        <div class="prompt" id="node-prompt">
-          Rome is not expecting you. Do you attempt the Alpine crossing with elephants?
+        <div class="letter-footer">
+          <span class="signature">— The Council of Elders</span>
         </div>
+      </article>
+    </section>
 
-        <div class="choices-list" id="choices">
-          <button class="choice-btn" type="button">Cross the Alps immediately</button>
-          <button class="choice-btn" type="button">Wait for reinforcements</button>
-          <button class="choice-btn" type="button">Attack a different route (safer path)</button>
-          <button class="choice-btn" type="button">Retreat and regroup</button>
-        </div>
+    <!-- Bottom Card: Choices -->
+    <section class="card card-bottom">
+      <div class="card-header">
+        <h2 class="section-heading">Choices</h2>
+        <p class="muted">Pick one decision to continue.</p>
+      </div>
 
-        <pre class="world-state" id="world-state">World State:
-- threat_level: unknown
-- roman_alertness: low
-- supplies: limited</pre>
-      </section>
+      <div class="question">
+        Rome is not expecting you. Do you attempt the Alpine crossing with elephants?
+      </div>
 
+      <div class="choices-grid">
+        <a class="choice" href="result.html">Cross the Alps immediately</a>
+        <a class="choice" href="result.html">Wait for reinforcements</a>
+        <a class="choice" href="result.html">Attack a different route (safer path)</a>
+        <a class="choice" href="result.html">Retreat and regroup</a>
+      </div>
     </section>
   </main>
 </body>
