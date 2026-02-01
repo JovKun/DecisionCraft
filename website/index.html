@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alternate Timeline</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alternate Timeline</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-    <div id="main-container">
-        <div id="timeline">
-            <h1>Alternate Timeline Simulator</h1>
-            <p>Make decisions based on past events that could change the course of history.</p>
-        </div>
-        <div id="button">
-            <a href="../timeline.html" id="start-button" class="button">Start your journey...</a>
-        </div>
+  <div id="main-container">
+
+    <!-- HERO -->
+    <div id="timeline">
+      <h1 class="vibe-title">Alternate Timeline Simulator</h1>
+      <p class="subtitle">
+        Make decisions based on past events that could change the course of history.
+      </p>
     </div>
     <div id="meta"></div>
     <h2 id="node-title"></h2>
@@ -28,6 +29,52 @@
     <pre id="world-state"></pre>
     <button id="reset">Reset</button>
 
-    <script src="../scripts/main.js"></script>
+    <!-- CTA -->
+    <div id="button">
+      <a href="timeline.html" id="start-button" class="button">
+        Start your journey <span class="arrow">→</span>
+      </a>
+    </div>
+
+    <!-- RULES / HOW IT WORKS -->
+    <section class="rules">
+      <h2 class="rules-title">How It Works</h2>
+
+      <div class="rule-card">
+        <div class="rule-icon icon-gold">🎯</div>
+        <div class="rule-text">
+          <h3>Choose Your Moment</h3>
+          <p>Select from pivotal historical events across different eras.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon icon-blue">⚡</div>
+        <div class="rule-text">
+          <h3>Make the Critical Decision</h3>
+          <p>Your choice changes the timeline — sometimes in unexpected ways.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon icon-green">🏆</div>
+        <div class="rule-text">
+          <h3>Track Outcomes</h3>
+          <p>Earn achievements, unlock new scenarios, and compare timelines.</p>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-icon icon-purple">🧠</div>
+        <div class="rule-text">
+          <h3>Learn + Replay</h3>
+          <p>Replay events, explore alternate outcomes, and learn real history through choices.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <script src="../scripts/main.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { fetchNode } from "./api.js";
+import { fetchRoot, fetchNext } from "./api.js";
 import { getState, applyEffects, resetState, snapshotState } from "./state.js";
 
 const el = (id) => document.getElementById(id);
@@ -51,9 +51,32 @@ function renderNode(payload) {
     });
 
     renderState();
-    ui.meta.textContent = `Run: ${runId} `;
-
+    ui.meta.textContent = `Run: ${runId} ${leader?.id ?? ""}`;
 }
+
+async function onChoose(choice) {
+    try {
+        applyEffects(choice.effects);
+        history.push(choice.id);
+        renderState();
+
+        ui.meta.textContent = `Generating next decision...`;
+
+        const nextPayload = await fetchNext({
+            run_id: runId,
+            year: year,
+            leader_id: leader.id,
+            history: history,
+            state: snapshotState(),
+        });
+
+        renderNode(nextPayload);
+    } catch (err) {
+        console.error("Error fetching next node:", err);
+        ui.meta.textContent = `Error fetching next node: ${err.message}`;
+    }
+}
+
 
 ui.reset.addEventListener("click", async() => {
     resetState();
